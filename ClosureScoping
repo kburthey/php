@@ -1,0 +1,28 @@
+<?php
+//A basic shopping cart which contains a list of added products
+//and the quantity of each product. Includes a method which
+//calculates the total price of the items in the cart using a
+//closure as a call back
+class Cart
+{
+  const PRICE_BUTTER  = 1.00;
+  const PRICE_MILK    = 3.00;
+  const PRICE_EGGS    = 6.95;
+  
+  protected $products = array();
+  
+  public function add($product, $quantity)
+  {
+    $this->products[$product] = $quantity;
+  }
+  
+  public function getQuantity($product)
+  {
+    return isset($this->products[$product]) ? $this->products[$product]: FALSE;
+  }
+  
+  public function getTotal($tax)
+  {
+    $total = 0.00;
+    $callback = function($quantity, $product) use ($tax, &$total)
+      {$pricePerItem = constant(__CLASS__. 
