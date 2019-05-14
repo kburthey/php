@@ -1,0 +1,7 @@
+<?php
+echo (new DateTime())->format('Y');
+
+?>
+
+The above example will output something similar to:
+2016
